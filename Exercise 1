@@ -1,0 +1,21 @@
+import os
+import sys
+
+def function1(filepath, string1, string2):
+    with open(filepath) as f:
+        s = f.read()
+    s = s.replace(string1, string2)
+    with open(filepath, "w") as f:
+        f.write(s)
+
+def function2(directory, string1, string2):
+    for root, dirs, files in os.walk(directory):
+        for file in files:
+            filepath = os.path.join(root, file)
+            replace_string_in_file(filepath, string1, string2)
+
+if _name_ == "_main_":
+    string1 = sys.argv[1]
+    string2 = sys.argv[2]
+    directory = sys.argv[3]
+    replace_strings_in_directory(directory, string1, string2)
