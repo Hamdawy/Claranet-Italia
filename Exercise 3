@@ -1,0 +1,3 @@
+ 0 0 * * 0 tar -czf /tmp/user-backup.tar.gz /home/user && scp /tmp/user-backup.tar.gz user@192.168.1.100:/backup/
+%% This cron string runs the following command every Sunday at midnight %%
+tar -czf /tmp/user-backup.tar.gz /home/user && scp /tmp/user-backup.tar.gz user@192.168.1.100:/backup/
