@@ -1,0 +1,24 @@
+import os
+import sys
+from collections import defaultdict
+
+def count_scripts(directory):
+    counts = defaultdict(int)
+    for root, dirs, files in os.walk(directory):
+        for file in files:
+            filepath = os.path.join(root, file)
+            if os.access(filepath, os.X_OK):
+                with open(filepath, "rb") as f:
+                    line = f.readline()
+                    if line.startswith(b"#!/"):
+                        interpreter = line[2:].strip().decode("utf-8")
+                        counts[interpreter] += 1
+                    else:
+                        counts["Unknown"] += 1
+    return counts
+
+if _name_ == "_main_":
+    directory = sys.argv[1]
+    counts = count_scripts(directory)
+    for interpreter, count in counts.items():
+        print(f"{count:5} {interpreter}")
