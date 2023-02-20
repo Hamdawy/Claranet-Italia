@@ -17,7 +17,7 @@ def count_scripts(directory):
                         counts["Unknown"] += 1
     return counts
 
-if _name_ == "_main_":
+if __name__ == "_main_":
     directory = sys.argv[1]
     counts = count_scripts(directory)
     for interpreter, count in counts.items():
